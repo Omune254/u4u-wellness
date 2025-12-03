@@ -20,7 +20,13 @@ const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { delay, duration: 0.5, ease: "easeOut" },
+  transition: { delay, duration: 0.5, ease: "easeOut" }, // still valid string!
+});
+
+const fadeUpVariants = (delay = 0) => ({
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
 });
 
 // ── Reusable Wrappers ──
@@ -42,7 +48,12 @@ const ServiceCard = ({
   delay?: number;
 }) => (
   <motion.div
-    {...fadeUp(delay)}
+    // Spread only the safe props
+    initial={fadeUpVariants(delay).initial}
+    whileInView={fadeUpVariants(delay).whileInView}
+    viewport={fadeUpVariants(delay).viewport}
+    // Pass transition separately → fixes the type error
+    transition={{ delay, duration: 0.5, ease: "easeOut" }}
     className="grid md:grid-cols-2 gap-8 items-center"
   >
     {/* Text First on Mobile */}
@@ -54,8 +65,12 @@ const ServiceCard = ({
       <div className="text-gray-700 leading-relaxed space-y-3">{children}</div>
     </div>
 
-    {/* Image Second on Mobile */}
-    <div className={`bg-gradient-to-br from-green-50 to-teal-50 h-56 rounded-xl flex items-center justify-center ${reverse ? "md:order-1" : ""}`}>
+    {/* Placeholder Image */}
+    <div
+      className={`bg-gradient-to-br from-green-50 to-teal-50 h-56 rounded-xl flex items-center justify-center ${
+        reverse ? "md:order-1" : ""
+      }`}
+    >
       <Icon className="w-20 h-20 text-green-600 opacity-30" aria-hidden="true" />
     </div>
   </motion.div>
@@ -81,14 +96,16 @@ export default function ServicesSection({ full = false }: Props) {
     <section id="services" className="py-20 bg-white">
       <SectionWrapper>
         <motion.h1
-          {...fadeUp()}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-gray-800"
         >
           Our Services
         </motion.h1>
 
         <div className="max-w-5xl mx-auto space-y-20">
-
           <ServiceCard icon={Brain} title="Individual Therapy" delay={0.1}>
             <p>A confidential space to talk openly and heal. We help with:</p>
             <ul className="list-disc list-inside space-y-1 text-gray-600">
@@ -135,18 +152,17 @@ export default function ServicesSection({ full = false }: Props) {
             <p>We go beyond therapy — into communities and crisis response.</p>
             <p className="mt-3">Ensuring care reaches those who need it most.</p>
           </ServiceCard>
-
         </div>
 
         {/* CTA */}
         <motion.div
-          {...fadeUp(0.2)}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
           className="mt-20 text-center"
         >
-          <Link
-            href="/contact"
-            className="btn-primary text-lg px-8 py-4 inline-block"
-          >
+          <Link href="/contact" className="btn-primary text-lg px-8 py-4 inline-block">
             Book a Session
           </Link>
         </motion.div>
