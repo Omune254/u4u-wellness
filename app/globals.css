@@ -1,0 +1,44 @@
+/* app/globals.css */
+@import "tailwindcss";
+@import "tailwindcss/utilities";
+
+/* ───── SMOOTH SCROLL & FONTS ───── */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
+
+/* ───── CONTAINER & SPACING ───── */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+.section-py { @apply py-16 md:py-24; }
+
+/* ───── GRADIENTS & TEXT ───── */
+.gradient-text {
+  @apply bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent;
+}
+.glass-card {
+  @apply bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-6;
+}
+
+/* ───── BUTTONS ───── */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300;
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 border-2 border-green-600 text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition;
+}
+
+/* ───── ANIMATIONS ───── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+
+/* ───── SCROLLBAR (optional) ───── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { @apply bg-gray-50; }
+::-webkit-scrollbar-thumb { @apply bg-gradient-to-b from-green-500 to-teal-500 rounded-full; }
