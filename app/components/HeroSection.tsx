@@ -4,7 +4,6 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export const HeroSection = () => {
   const scrollTo = (id: string) => {
