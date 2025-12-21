@@ -24,15 +24,19 @@ export const AboutSection = ({ full = false }: { full?: boolean }) => {
           About U4U Wellness Center
         </h1>
 
-        <div className="max-w-4xl mx-auto space-y-8 text-lg text-gray-700 text-center mb-16">
+        {/* Mission Statement (your new text) */}
+        <div className="max-w-4xl mx-auto text-center space-y-6 text-lg text-gray-700 mb-16">
           <p>
-            Welcome to U4U Wellness Center, your safe space for healing, growth, and emotional well-being.
+            U4U Wellness Center is a community-focused mental wellness organization dedicated to supporting individuals, families, and groups through accessible, confidential, and culturally sensitive online mental-health services.
+          </p>
+          <p className="font-semibold text-green-800">
+            Our core belief: when you heal, the people around you benefit.
           </p>
           <p>
-            We believe that everyone deserves to feel heard, understood, and supported without judgment.
+            The first “U” represents you — the individual and the second “U” represents the community connected to you. Every step you take toward emotional wellness creates a positive ripple effect.
           </p>
           <p>
-            Founded by two passionate licensed psychologists, U4U is built on empathy, confidentiality, and culturally sensitive care.
+            We provide a wide range of mental wellness services designed to meet people where they are. From individual therapy and family support to stress management, trauma care, and youth guidance, our goal is to make emotional support available, affordable, and stigma-free.
           </p>
         </div>
 
