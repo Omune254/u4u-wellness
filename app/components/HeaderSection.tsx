@@ -9,77 +9,66 @@ import { useState } from "react";
 export const HeaderSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/MyLogo.jpg"
-            alt="U4U Logo"
-            width={40}
-            height={40}
-            className="rounded-full ring-2 ring-green-100 group-hover:ring-green-300 transition-all"
+            src="/MyLogo.jpg"                     
+            alt="U4U Wellness Center Logo"
+            width={48}
+            height={48}
+            className="rounded-full ring-4 ring-green-100 group-hover:ring-green-300 transition-all shadow-lg"
+            priority
           />
-          <span className="font-bold text-green-700 text-lg">U4U</span>
+          <div>
+            <div className="font-bold text-2xl text-green-700 leading-none">U4U</div>
+            <div className="text-xs text-green-600 font-medium">Wellness Center</div>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-gray-700 font-medium hover:text-green-600 transition relative group"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
+        <nav className="hidden md:flex items-center gap-10">
+          <Link href="/" className="text-gray-700 font-medium hover:text-green-600 transition">Home</Link>
+          <Link href="/about" className="text-gray-700 font-medium hover:text-green-600 transition">About</Link>
+          <Link href="/services" className="text-gray-700 font-medium hover:text-green-600 transition">Services</Link>
+          <Link href="/contact" className="text-gray-700 font-medium hover:text-green-600 transition">Contact</Link>
+
+          {/* Book Button */}
           <a
-            href="https://wa.me/2547XXXXXXXX?text=Hi%20Sharon,%20I'd%20like%20to%20book%20a%20session"
+            href="https://wa.me/254110707361?text=Hi%20U4U%20Team%2C%20I%20would%20like%20to%20book%20a%20session"
             target="_blank"
-            className="bg-green-600 text-white px-5 py-2 rounded-full font-medium hover:bg-green-700 transition shadow-md"
+            rel="noopener noreferrer"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
           >
             Book Now
           </a>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden p-2 rounded-lg hover:bg-green-50 transition"
         >
-          {isOpen ? <X className="w-6 h-6 text-green-700" /> : <Menu className="w-6 h-6 text-green-700" />}
+          {isOpen ? <X className="w-7 h-7 text-green-700" /> : <Menu className="w-7 h-7 text-green-700" />}
         </button>
       </div>
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-green-100">
-          <nav className="container mx-auto px-4 py-4 space-y-3">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block py-3 px-4 text-gray-700 font-medium hover:bg-green-50 hover:text-green-600 rounded-lg transition"
-              >
-                {item.name}
-              </Link>
-            ))}
+        <div className="md:hidden bg-white border-t-2 border-green-100 shadow-xl">
+          <nav className="container mx-auto px-4 py-6 space-y-4">
+            <Link href="/" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-700 hover:text-green-600">Home</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-700 hover:text-green-600">About</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-700 hover:text-green-600">Services</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-gray-700 hover:text-green-600">Contact</Link>
             <a
-              href="https://wa.me/254759795304?text=Hi%20Sharon,%20I'd%20like%20to%20book%20a%20session"
+              href="https://wa.me/254110707361?text=Hi%20U4U%20Team%2C%20I%20would%20like%20to%20book%20a%20session"
               target="_blank"
-              className="block w-full text-center py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
+              className="block text-center py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full shadow-lg"
             >
               Book via WhatsApp
             </a>

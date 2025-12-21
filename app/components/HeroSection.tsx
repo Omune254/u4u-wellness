@@ -88,7 +88,7 @@ export const HeroSection = () => {
             className="relative h-96 md:h-[520px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl"
           >
             <Image
-              src="/talks.jpeg" 
+              src="/doctor.jpg" 
               alt="Sharon Muchemi & Wanjiku Ngugi – Founders of U4U Wellness Center"
               fill
               className="object-cover hover:scale-105 transition-transform duration-1000"
