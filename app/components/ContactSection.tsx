@@ -152,7 +152,7 @@ export const ContactSection = () => {
                 className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full transition shadow-lg"
               >
                 <MessageCircle size={24} />
-                Book via WhatsApp (Fastest)
+                Book via WhatsApp
               </a>
             </div>
           </div>
