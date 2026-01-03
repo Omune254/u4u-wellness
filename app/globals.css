@@ -2,43 +2,106 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 
-/* ───── SMOOTH SCROLL & FONTS ───── */
+/* ───── BASE & TYPOGRAPHY ───── */
 html {
   scroll-behavior: smooth;
   font-family: 'Inter', system-ui, sans-serif;
 }
-h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
 
-/* ───── CONTAINER & SPACING ───── */
+/* Elegant headings with Playfair Display */
+h1, h2, h3, h4, .font-display {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
+}
+
+/* Strong visual hierarchy */
+h1 { @apply text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 mb-8; }
+h2 { @apply text-3xl md:text-4xl font-bold text-green-700 mb-6; }
+h3 { @apply text-2xl md:text-3xl font-semibold text-green-600 mb-4; }
+h4 { @apply text-xl font-medium text-gray-800 mb-3; }
+p, li { @apply text-base md:text-lg text-gray-700 leading-relaxed; }
+
+/* ───── LAYOUT & SPACING ───── */
 .container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 .section-py { @apply py-16 md:py-24; }
+.section-alt { @apply bg-green-50/70; } /* soft alternating background */
 
 /* ───── GRADIENTS & TEXT ───── */
 .gradient-text {
-  @apply bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent font-bold;
 }
 .glass-card {
-  @apply bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-6;
+  @apply bg-white/95 backdrop-blur-md border border-white/30 rounded-2xl shadow-xl p-8 transition-all hover:shadow-2xl;
 }
 
 /* ───── BUTTONS ───── */
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300;
+  @apply inline-flex items-center justify-center gap-3 bg-gradient-to-r from-green-600 to-teal-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300;
 }
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 border-2 border-green-600 text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-50 transition;
+  @apply inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 hover:border-white/80 transition-all duration-300;
+}
+
+/* Button for dark green backgrounds (high visibility) */
+.btn-primary-dark {
+  @apply inline-flex items-center justify-center gap-3 bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl hover:bg-green-50 transition-all duration-300;
 }
 
 /* ───── ANIMATIONS ───── */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-12px); }
 }
 .float { animation: float 6s ease-in-out infinite; }
 
-/* ───── SCROLLBAR (optional) ───── */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { @apply bg-gray-50; }
-::-webkit-scrollbar-thumb { @apply bg-gradient-to-b from-green-500 to-teal-500 rounded-full; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* ───── IMAGE CARDS & HERO ───── */
+.image-card {
+  @apply relative overflow-hidden rounded-3xl shadow-2xl;
+}
+.image-card img {
+  @apply w-full h-full object-cover transition-transform duration-1000 hover:scale-110;
+}
+.hero-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent;
+}
+
+/* ───── HIGH-CONTRAST TEXT FOR DARK GREEN FOOTER/BACKGROUNDS ───── */
+.footer-heading { @apply text-white font-bold text-lg mb-4; }
+.footer-text { @apply text-green-100; } /* Light, readable on dark green */
+.footer-link { @apply text-teal-200 hover:text-white transition; } /* Teal accent that pops */
+.footer-icon { @apply text-green-200; } /* Icons in footer */
+
+/* General high-contrast helpers */
+.text-on-dark-green { @apply text-white; }
+.text-accent-dark { @apply text-teal-200 hover:text-teal-100; }
+
+/* ───── SCROLLBAR ───── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { @apply bg-gray-100 rounded-full; }
+::-webkit-scrollbar-thumb { 
+  @apply bg-gradient-to-b from-green-500 to-teal-500 rounded-full border-2 border-white;
+}
+::-webkit-scrollbar-thumb:hover { @apply bg-gradient-to-b from-green-600 to-teal-600; }
+
+/* ───── DARK MODE SUPPORT (Optional Bonus) ───── */
+@media (prefers-color-scheme: dark) {
+  body { @apply bg-gray-900 text-white; }
+  .section-alt { @apply bg-green-900/50; }
+  .glass-card { @apply bg-gray-800/95 border-gray-700 text-white; }
+  h1, h2, h3, h4 { @apply text-green-300; }
+  p, li { @apply text-gray-300; }
+  .btn-primary { @apply bg-gradient-to-r from-green-700 to-teal-700; }
+  .footer-heading { @apply text-white; }
+  .footer-text { @apply text-green-200; }
+  .footer-link { @apply text-teal-300 hover:text-white; }
+}
