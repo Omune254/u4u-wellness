@@ -10,8 +10,12 @@ export const metadata: Metadata = {
   description:
     "U4U Wellness Center – Your safe, confidential space for mental health counseling, therapy, and personal growth in Kenya.",
   keywords:
-    "U4U Wellness Center, mental health Kenya, therapy Nakuru, psychologist Kenya, anxiety counseling, CBT therapy, emotional wellness",
+    "U4U Wellness Center, mental health Kenya, therapy Nakuru, psychologist Kenya, anxiety counseling, CBT therapy, emotional wellness, trauma care",
   authors: [{ name: "Sharon Muchemi & Wanjiku Ngugi" }],
+
+  // ← THIS FIXES THE WARNING
+  metadataBase: new URL("https://u4u-wellness.vercel.app"),
+
   openGraph: {
     title: "U4U Wellness Center",
     description: "Your safe space for healing, growth, and emotional wellness.",
@@ -19,10 +23,10 @@ export const metadata: Metadata = {
     siteName: "U4U Wellness Center",
     images: [
       {
-        url: "/sharon.jpg",
+        url: "/sharon.jpg", // will be resolved using metadataBase
         width: 1200,
         height: 630,
-        alt: "U4U Wellness Center Healing Starts Here",
+        alt: "U4U Wellness Center – Healing Starts Here",
       },
     ],
     locale: "en_KE",
@@ -33,6 +37,10 @@ export const metadata: Metadata = {
     title: "U4U Wellness Center",
     description: "Your safe space for healing and growth.",
     images: ["/sharon.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -48,19 +56,28 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        
-        {/* Fonts */}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        {/* Preload critical fonts */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
           rel="stylesheet"
         />
 
-        {/* Theme Color for Mobile */}
+        {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#166534" />
       </head>
 
-      <body className="font-sans text-gray-800 antialiased">
+      <body className="font-sans text-gray-800 antialiased bg-white">
         <HeaderSection />
         <main>{children}</main>
         <Footer />

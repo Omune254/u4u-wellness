@@ -2,7 +2,8 @@
 "use client";
 
 import React from "react";
-import { motion, easeOut } from "framer-motion";  // Import easeOut
+import Image from "next/image";
+import { motion, easeOut } from "framer-motion";
 import {
   Brain,
   Users,
@@ -15,12 +16,12 @@ import Link from "next/link";
 
 type Props = { full?: boolean };
 
-// ── Animation Config ── (Fixed with imported easing)
+// ── Animation Config ──
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { delay, duration: 0.5, ease: easeOut },  // Type-safe!
+  transition: { delay, duration: 0.5, ease: easeOut },
 });
 
 // ── Reusable Wrappers ──
@@ -42,7 +43,7 @@ const ServiceCard = ({
   delay?: number;
 }) => (
   <motion.div
-    {...fadeUp(delay)}  // Now fully typed—no errors!
+    {...fadeUp(delay)}
     className="grid md:grid-cols-2 gap-8 items-center"
   >
     {/* Text First on Mobile */}
@@ -54,7 +55,7 @@ const ServiceCard = ({
       <div className="text-gray-700 leading-relaxed space-y-3">{children}</div>
     </div>
 
-    {/* Image Second on Mobile */}
+    {/* Placeholder Image (you can replace with specific images per service later) */}
     <div className={`bg-gradient-to-br from-green-50 to-teal-50 h-56 rounded-xl flex items-center justify-center ${reverse ? "md:order-1" : ""}`}>
       <Icon className="w-20 h-20 text-green-600 opacity-30" aria-hidden="true" />
     </div>
@@ -80,15 +81,40 @@ export default function ServicesSection({ full = false }: Props) {
   return (
     <section id="services" className="py-20 bg-white">
       <SectionWrapper>
+        {/* Hero Banner with Your Image - Full-width, calming opener */}
+        <div className="relative h-64 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-16">
+          <Image
+            src="/service-anxiety-relax.jpg"  // ← Your image here (in public/ folder)
+            alt="Relaxed and peaceful wellness scene - symbolizing anxiety relief"
+            fill
+            className="object-cover brightness-90"
+            priority
+            quality={85}
+          />
+          {/* Subtle overlay for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          {/* Overlay text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white px-6">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Our Services
+              </h1>
+              <p className="text-lg md:text-xl max-w-3xl mx-auto">
+                Compassionate, evidence-based support tailored to your needs
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Services List */}
         <motion.h1
           {...fadeUp()}
           className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-gray-800"
         >
-          Our Services
+          Discover How We Can Support You
         </motion.h1>
 
         <div className="max-w-5xl mx-auto space-y-20">
-
           <ServiceCard icon={Brain} title="Individual Therapy" delay={0.1}>
             <p>A confidential space to talk openly and heal. We help with:</p>
             <ul className="list-disc list-inside space-y-1 text-gray-600">
@@ -102,7 +128,7 @@ export default function ServicesSection({ full = false }: Props) {
 
           <ServiceCard icon={Users} title="Family and Relationship Counseling" reverse delay={0.2}>
             <p>Relationships shape well-being. We improve communication and rebuild bonds.</p>
-            <p className="mt-3">Support for couples, parents, and families — safe and non-judgmental.</p>
+            <p className="mt-3">Support for couples, parents, and families safe and non-judgmental.</p>
           </ServiceCard>
 
           <ServiceCard icon={GraduationCap} title="Youth and Student Support" delay={0.3}>
@@ -128,14 +154,13 @@ export default function ServicesSection({ full = false }: Props) {
 
           <ServiceCard icon={Globe} title="Online Counseling" delay={0.5}>
             <p>Flexible, secure virtual sessions via phone or video.</p>
-            <p className="mt-3">Same compassionate care — from your own space.</p>
+            <p className="mt-3">Same compassionate care from your own space.</p>
           </ServiceCard>
 
           <ServiceCard icon={Heart} title="Psychological First Aid & Outreach" reverse delay={0.6}>
-            <p>We go beyond therapy — into communities and crisis response.</p>
+            <p>We go beyond therapy into communities and crisis response.</p>
             <p className="mt-3">Ensuring care reaches those who need it most.</p>
           </ServiceCard>
-
         </div>
 
         {/* CTA */}

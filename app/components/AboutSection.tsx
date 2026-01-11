@@ -24,20 +24,35 @@ export const AboutSection = ({ full = false }: { full?: boolean }) => {
           About U4U Wellness Center
         </h1>
 
-        {/* Mission Statement (your new text) */}
-        <div className="max-w-4xl mx-auto text-center space-y-6 text-lg text-gray-700 mb-16">
-          <p>
-            U4U Wellness Center is a community-focused mental wellness organization dedicated to supporting individuals, families, and groups through accessible, confidential, and culturally sensitive online mental-health services.
-          </p>
-          <p className="font-semibold text-green-800">
-            Our core belief: when you heal, the people around you benefit.
-          </p>
-          <p>
-            The first “U” represents you — the individual and the second “U” represents the community connected to you. Every step you take toward emotional wellness creates a positive ripple effect.
-          </p>
-          <p>
-            We provide a wide range of mental wellness services designed to meet people where they are. From individual therapy and family support to stress management, trauma care, and youth guidance, our goal is to make emotional support available, affordable, and stigma-free.
-          </p>
+        {/* Main Mission + Image Grid */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Left: Image (calming therapy room) */}
+          <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl order-2 md:order-1">
+            <Image
+              src="/therapy-room-plants.jpg"  // ← Your image here (in public/ folder)
+              alt="Calm therapy room with plants and soft natural light"
+              fill
+              className="object-cover"
+              priority
+              quality={85}
+            />
+          </div>
+
+          {/* Right: Mission text */}
+          <div className="order-1 md:order-2 text-center md:text-left space-y-6 text-lg text-gray-700">
+            <p>
+              U4U Wellness Center is a community-focused mental wellness organization dedicated to supporting individuals, families, and groups through accessible, confidential, and culturally sensitive online mental-health services.
+            </p>
+            <p className="font-semibold text-green-800">
+              Our core belief: when you heal, the people around you benefit.
+            </p>
+            <p>
+              The first “U” represents you — the individual and the second “U” represents the community connected to you. Every step you take toward emotional wellness creates a positive ripple effect.
+            </p>
+            <p>
+              We provide a wide range of mental wellness services designed to meet people where they are. From individual therapy and family support to stress management, trauma care, and youth guidance, our goal is to make emotional support available, affordable, and stigma-free.
+            </p>
+          </div>
         </div>
 
         {/* Directors Section */}
