@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────── BASE ───────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white text-gray-800 antialiased; font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+  h1, h2, h3, h4, h5, h6 { @apply font-bold leading-tight tracking-tight; }
+  ::selection { @apply bg-emerald-200 text-emerald-900; }
+}
+
+/* ───────────────── SCROLL PROGRESS BAR ───────────────── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, #059669, #0d9488, #059669);
+  z-index: 9999; transition: width 0.1s linear; border-radius: 0 2px 2px 0;
+}
+
+/* ───────────────── DARK / IMAGE BACKGROUNDS ───────────────── */
+.dark-bg, .text-on-dark { color: white; }
+.dark-bg p, .dark-bg li, .dark-bg h1, .dark-bg h2, .dark-bg h3, .dark-bg h4 {
+  @apply text-white; text-shadow: 0 2px 6px rgba(0,0,0,0.65);
+}
+
+/* ───────────────── LAYOUT ───────────────── */
+.container { @apply max-w-7xl mx-auto px-5 sm:px-6 lg:px-8; }
+.section-py { @apply py-16 md:py-20 lg:py-24; }
+.section-alt { @apply bg-gradient-to-b from-green-50/60 to-white; }
+
+/* ───────────────── CARDS ───────────────── */
+.card { @apply bg-white rounded-2xl border border-gray-100 p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1; }
+.glass { @apply bg-white/85 backdrop-blur-md rounded-2xl border border-white/30 shadow-md p-6 md:p-8; }
+
+/* ───────────────── BUTTONS ───────────────── */
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300; }
+.btn:focus-visible { @apply ring-4 ring-teal-400/40 ring-offset-2 ring-offset-white outline-none; }
+.btn-primary { @apply btn bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-4 text-lg shadow-md hover:shadow-xl hover:scale-[1.03]; }
+.btn-outline { @apply btn border-2 border-emerald-600 text-emerald-700 px-8 py-4 text-lg hover:bg-emerald-50 hover:text-emerald-800; }
+.btn-secondary { @apply btn bg-gray-100 text-gray-800 px-7 py-3.5 hover:bg-gray-200; }
+
+/* ───────────────── ANIMATIONS ───────────────── */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
+@keyframes softFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.soft-float { animation: softFloat 7s ease-in-out infinite; }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+.shimmer-text {
+  background: linear-gradient(90deg, #059669 0%, #0d9488 40%, #10b981 60%, #059669 100%);
+  background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: shimmer 4s linear infinite;
+}
+
+/* ───────────────── SCROLL REVEAL ───────────────── */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ───────────────── MEDIA ───────────────── */
+.image-cover { @apply w-full h-full object-cover rounded-2xl; }
+.image-hover-zoom { @apply transition-transform duration-700 hover:scale-[1.04]; }
+
+/* ───────────────── FOOTER ───────────────── */
+.footer-heading { @apply text-white font-semibold text-lg mb-5; }
+.footer-text, .footer-link, .footer-icon { @apply text-white; }
+.footer-link { @apply hover:text-green-200 transition-colors; }
+.social-icon { @apply w-11 h-11 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 hover:bg-white/20 hover:scale-110; }
+.social-icon svg { @apply w-5 h-5 text-white; }
+
+/* ───────────────── BACK TO TOP ───────────────── */
+#back-to-top {
+  position: fixed; bottom: 6rem; right: 1.5rem; z-index: 50;
+  width: 3rem; height: 3rem; border-radius: 9999px;
+  background: #059669; color: white; box-shadow: 0 4px 20px rgba(5,150,105,0.4);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; opacity: 0; pointer-events: none; transform: translateY(16px);
+}
+#back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+#back-to-top:hover { background: #047857; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(5,150,105,0.5); }
+
+/* ───────────────── UTILITY ───────────────── */
+.gradient-text { @apply bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent; }
+.section-label { @apply text-xs uppercase tracking-[0.32em] text-emerald-600 font-semibold mb-3; }
+.section-title { @apply text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight; }
+.section-subtitle { @apply text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto; }
+.light-content p, .light-content li { @apply text-gray-700; }
+.text-soft { @apply text-gray-600; }
+
+/* ───────────────── ACCESSIBILITY ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0ms !important; }
+}
+
+/* ───────────────── DARK MODE ───────────────── */
+@media (prefers-color-scheme: dark) {
+  body { @apply bg-gray-950 text-gray-100; }
+  .light-content p, .light-content li { @apply text-gray-300; }
+  .card, .glass { @apply bg-gray-900/80 border-gray-800; }
+}
+
+/* ───────────────── SCROLLBAR ───────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { @apply bg-gray-100 rounded-full; }
+::-webkit-scrollbar-thumb { @apply bg-emerald-500/40 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-emerald-500/70; }
